@@ -1,0 +1,36 @@
+table {
+    table-layout: fixed;
+    width: 1000px;
+    border-collapse: collapse;
+    border: 3px solid purple;
+  }
+  
+thead th:nth-child(1) {
+    width: 33.33%;
+  }
+  
+  thead th:nth-child(2) {
+    width: 33.330%;
+  }
+  
+  thead th:nth-child(3) {
+    width: 33.330%;
+  }
+  
+  
+  td {
+    padding: 10px 40px;
+  }
+  th{
+      padding : 20px 40px;
+      background-color:lightpink;
+
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: lightgreen;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: lightsalmon;
+  }
