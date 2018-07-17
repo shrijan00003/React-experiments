@@ -15,10 +15,13 @@ class SearchData extends React.Component {
 		super();
 		this.state = {
 			val: '',
-            page: list.length,
-            currentPage : 1
+			page: 5,
+			currentPage: 1,
+			pageNumbers: []
 		};
 		// this.handleEvent = this.handleEvent.bind(this);
+		// this.renderPageNumber = this.renderPageNumber(this);
+		// this.pushInPageArray = this.pushInPageArray(this);
 	}
 
 	// handleEvent(e,type){
@@ -32,13 +35,45 @@ class SearchData extends React.Component {
 	//             page
 	//         });
 	//     }
-	// }
+    // }
+    
+
+	// renderPageNumber = (num) => (
+	// 	<li key={num} id={num} onClick={(e) => this.setState({ currentPage: e.target.val })}>
+	// 		{num}
+	// 	</li>
+	// );
+
+	pushInPageArray = ({ i }) => {
+		// this.setState({
+		//     pageNumbers : [...this.state.pageNumbers,i]
+		// });
+	};
 
 	render() {
-        const { page, currentPage } =   this.state;
-        
+		const { page, currentPage } = this.state;
+		const indexOfLastData = currentPage * page;
+		const indexOfFirstData = indexOfLastData - page;
+
+		const pageNumbers = [];
+		for (let i = 1; i <= Math.ceil(list.length / page); i++) {
+			// pushInPageArray(i);
+			// this.setState({
+			//     pageNumbers : [...this.state.pageNumbers,i]
+			// })
+			pageNumbers.push(i);
+		}
+
+		const renderPageNumber = pageNumbers.map((num) => {
+            return (
+                <li key={num} id={num} onClick={(e) => this.setState({ currentPage: Number(e.target.id) })}>
+                		{num}
+                </li> 
+            )
+        });
+
 		return (
-            <div>
+			<div>
 				<div className="searchDiv">
 					<span>Search :</span> <input type="text" onChange={(e) => this.setState({ val: e.target.value })} />
 					<span>Page Size :</span>
@@ -68,10 +103,19 @@ class SearchData extends React.Component {
 										data.gender.toLowerCase().includes(this.state.val.toLowerCase()) ||
 										data.company.toLowerCase().includes(this.state.val.toLowerCase())
 								)
-								.splice(0, this.state.page)
+								.splice(indexOfFirstData, indexOfLastData)
 								.map((person, index) => <Person key={index} {...person} />)}
 						</tbody>
-					</table>
+                    </table>
+                    
+					{
+                        //trying to call function inside map 
+                        // pageNumbers.map((num) => (
+                        //  <div> {this.renderPageNumber.call(this, num)} </div>
+                        // ))
+                        renderPageNumber
+                    }
+                        
 				</div>
 			</div>
 		);
