@@ -10,33 +10,71 @@ const Person = ({ name, gender, company }) => (
 	</tr>
 );
 
-class SearchData extends React.Component {
+class SearchTabularData extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			val: '',
-			page: list.length,
-			pageSize: 5,
-			currentPage: 1,
-			pageNumbers: []
+			searchQuery: '',
+			pageSize: 10,
+            currentPage: 1,
+            pages : Array.from(new Array(Math.ceil(list.length / 10)), (val,index) => index +1 ),
+            currentList : list.splice(0,10)
 		};
 		// this.handleEvent = this.handleEvent.bind(this);
 		// this.renderPageNumber = this.renderPageNumber(this);
 		// this.pushInPageArray = this.pushInPageArray(this);
-	}
+    }
 
-	// handleEvent(e,type){
-	//     const value =  e.target.value;
-	//     if(type === 'search'){
-	//         this.setState({
-	//             val : value
-	//         });
-	//     }else if (type === 'page'){
-	//         this.setState({
-	//             page
-	//         });
-	//     }
-	// }
+    dataWithCount = (count) => {
+        let indexOfFirstData = 0,
+            indexOfLastData  = 0,
+            currentList = [],
+            currentPage = this.state.currentPage,
+            inputCount = (count) ? parseInt( count.target.value ) : this.state.pageSize,
+
+            pages = Array.from(new Array(Math.ceil(list.length / inputCount)),(val,index) => index + 1);
+
+        
+            indexOfFirstData =  (currentPage -1 )* inputCount;
+            indexOfLastData = indexOfFirstData + inputCount ;
+
+            currentList =  list.slice( indexOfFirstData , indexOfLastData );
+
+            this.setState({
+                pages,
+                currentList,
+                pageSize : inputCount
+            });
+
+
+    }
+    
+    setSearchQuery = (q) => {
+        this.setState({
+            searchQuery : q.target.value
+        })
+    }
+
+
+     updatePage = async(page) => {
+
+        let $elem =  document.getElementById(this.state.currentPage);
+            if($elem) $elem.classList.remove("active");
+
+        await this.setState({
+            currentPage : page
+        })
+
+        $elem =  document.getElementById(page);
+        $elem.classList.add("active");
+    }
+    
+    filterData = (list) =>{
+        //need to complete this for filtering
+        let _list =  Object.assign({},list)
+    }
+
+
 
 	// renderPageNumber = (num) => (
 	// 	<li key={num} id={num} onClick={(e) => this.setState({ currentPage: e.target.val })}>
@@ -76,10 +114,10 @@ class SearchData extends React.Component {
 					<span>Page Size :</span>
 					<input
 						type="text"
-						onBlur={(e) =>
+						onChange={(e) =>
 							e.target.value !== ''
-								? this.setState({ pageSize: e.target.value })
-								: this.setState({ pageSize: list.length })}
+								? this.setState({ page: e.target.value })
+								: this.setState({ page: list.length })}
 					/>
 				</div>
 
@@ -100,7 +138,7 @@ class SearchData extends React.Component {
 										data.gender.toLowerCase().includes(this.state.val.toLowerCase()) ||
 										data.company.toLowerCase().includes(this.state.val.toLowerCase())
 								)
-								.slice(indexOfFirstData, indexOfLastData)
+								.splice(indexOfFirstData, indexOfLastData)
 								.map((person, index) => <Person key={index} {...person} />)}
 						</tbody>
 					</table>
@@ -110,4 +148,4 @@ class SearchData extends React.Component {
 		);
 	}
 }
-export default SearchData;
+export default SearchTabularData;

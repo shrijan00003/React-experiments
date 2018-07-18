@@ -10,6 +10,10 @@ body{
   text-align: center;
   margin: 0 auto;
 }
+.tabularData{
+  margin:  0 auto;
+  text-align: center;
+}
 
 .dataTable{
   text-align: left;
@@ -30,4 +34,15 @@ input[type=text]{
   border: 1px solid black;
   width: 200px;
   padding : 10px;
+}
+
+.pagination{
+  list-style-type: none;
+  text-align: center;
+  margin: 0 auto;
+  /* float: left; */
+}
+.pagination li {
+  float: left;
+  padding: 10px;
 }
