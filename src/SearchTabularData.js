@@ -138,7 +138,7 @@ class SearchTabularData extends React.Component {
 										data.gender.toLowerCase().includes(this.state.val.toLowerCase()) ||
 										data.company.toLowerCase().includes(this.state.val.toLowerCase())
 								)
-								.splice(indexOfFirstData, indexOfLastData)
+								.slice(indexOfFirstData, indexOfLastData)
 								.map((person, index) => <Person key={index} {...person} />)}
 						</tbody>
 					</table>

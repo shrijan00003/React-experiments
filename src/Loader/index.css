@@ -1,0 +1,32 @@
+.Loader {
+    text-align: center;
+    padding: 50px;
+}
+
+.Loader .Message {
+    padding-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+.Loader .Spinner {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-top: 3px solid rgb(190, 190, 190);
+    border-right: 3px solid rgb(190, 190, 190);
+    border-bottom: 3px solid rgb(190, 190, 190);
+    border-left: 3px solid rgb(82, 183, 216);
+    border-radius: 50%;
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+	

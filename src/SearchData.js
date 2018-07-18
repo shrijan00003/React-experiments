@@ -77,7 +77,7 @@ class SearchData extends React.Component {
 					<input
 						type="text"
 						onBlur={(e) =>
-							e.target.value !== ''
+							( e.target.value !== '' || e.target.value <= 0 )
 								? this.setState({ pageSize: e.target.value })
 								: this.setState({ pageSize: list.length })}
 					/>

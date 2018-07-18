@@ -10,7 +10,7 @@ body{
   text-align: center;
   margin: 0 auto;
 }
-.tabularData{
+.data-wrapper{
   margin:  0 auto;
   text-align: center;
 }
@@ -21,7 +21,7 @@ body{
 }
 
 /* styling input fields  */
-.searchDiv{
+.search-box-wrapper{
   padding: 40px;
 }
 
@@ -34,6 +34,7 @@ input[type=text]{
   border: 1px solid black;
   width: 200px;
   padding : 10px;
+  margin-left: 5px;
 }
 
 .pagination{
