@@ -28,7 +28,7 @@ class App extends Component {
           user_id: userdata.id
         }
       });
-      localStorage.setItem('userdata',userdata);
+      localStorage.setItem('userdata',this.state.user);
     }
   }
 
