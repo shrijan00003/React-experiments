@@ -32,7 +32,7 @@ body{
 input[type=text]{
   background-color: lightyellow;
   border: 1px solid black;
-  width: 200px;
+  width: 500px;
   padding : 10px;
   margin-left: 5px;
 }
@@ -46,4 +46,9 @@ input[type=text]{
 .pagination li {
   float: left;
   padding: 10px;
+}
+
+.pageSizeSelectBox{
+  padding: 10px;
+  background-color: aqua;
 }

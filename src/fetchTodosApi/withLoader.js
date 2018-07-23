@@ -4,10 +4,9 @@ import Loader from '../Loader';
 const withLoader = (Component) => {
     class MyComponent extends React.Component{
         render(){
-            console.log(this.props.todos);
-            return this.props.todos
-            ?this.props.todos.map((todo, index) => <Component key={index} {...todo} />)
-            : <Loader/>
+            return this.props.isLoaded ?
+            this.props.datas.map((data, index) => <Component key={index} {...data} />) :
+            <Loader/>
         }
     }
     return MyComponent
