@@ -3,9 +3,9 @@ import withFetchingData from './withFetchingData';
 import withLoader from './withLoader';
 import Todo from './Todo';
 import '../css-component/table.css';
-import SelectBox from './components/SelectBox';
 import withFetchingCategories from './withFetchingCategories';
 import Select from './components/Select';
+import BASE_URL from '../components/constants/TodoConstants'
 
 
 const TodoWithFechingData = withFetchingData(withLoader(Todo));
@@ -13,10 +13,9 @@ const TodoWithCategories = withFetchingCategories(withLoader(Select));
 
 class Index extends React.Component {
     constructor() {
-
         super();
         this.state = {
-            url :'http://127.0.0.1:8848/api/',
+            url :BASE_URL,
             query: '',
             category: '',
             pageSize: '',
@@ -44,9 +43,7 @@ class Index extends React.Component {
                             <option value = ''>All</option>
                             <TodoWithCategories url = {`${this.state.url}categories`} />
                         </select>
-
-                        {/* <SelectBox selectClass={this.state.select.selectClass} values={this.state.select.values} onChange={(e) => this.setState({ pageSize: e.target.value })} /> */}
-
+                        
                         <select className = "pageSizeSelectBox" onChange={(e) => this.setState({ pageSize: e.target.value })} >
                             <option value = ''>Page Size</option>
                             <option value = '2'>2</option>
